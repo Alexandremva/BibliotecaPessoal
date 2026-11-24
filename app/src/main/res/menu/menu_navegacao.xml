@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    ITENS DO MENU INFERIOR (BottomNavigationView), usados nas 3 telas.
+    Cada item tem um id (usado em NavegacaoMenu para saber qual tela abrir),
+    um ícone (pasta drawable) e um texto (strings.xml).
+-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Abre a lista de livros (ListaLivrosActivity) -->
     <item
         android:id="@+id/nav_lista"
         android:icon="@drawable/ic_lista"
         android:title="@string/menu_lista" />
+    <!-- Abre o formulário de cadastro (CadastroLivroActivity) -->
     <item
         android:id="@+id/nav_cadastro"
         android:icon="@drawable/ic_adicionar"
         android:title="@string/menu_cadastro" />
+    <!-- Abre o resumo com os totais (ResumoActivity) -->
     <item
         android:id="@+id/nav_resumo"
         android:icon="@drawable/ic_resumo"

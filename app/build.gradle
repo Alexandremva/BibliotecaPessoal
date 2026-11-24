@@ -1,35 +1,40 @@
+// CONFIGURAÇÃO DE BUILD DO MÓDULO "app": como o aplicativo é compilado e quais bibliotecas usa.
+
+// Indica que este módulo gera um aplicativo Android (APK)
 plugins {
     id 'com.android.application'
 }
 
 android {
-    namespace 'com.example.bibliotecapessoal'
-    compileSdk 34
+    namespace 'com.example.bibliotecapessoal' // Pacote base das classes (usado para gerar a classe R)
+    compileSdk 34                             // Versão do Android SDK usada para compilar (Android 14)
 
     defaultConfig {
-        applicationId "com.example.bibliotecapessoal"
-        minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        applicationId "com.example.bibliotecapessoal" // Identificador único do app no celular / Play Store
+        minSdk 24          // Versão mínima suportada: Android 7.0
+        targetSdk 34       // Versão para a qual o app foi testado/otimizado
+        versionCode 1      // Número interno da versão (aumenta a cada publicação)
+        versionName "1.0"  // Versão exibida ao usuário
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled false // Não reduz/ofusca o código na versão final
         }
     }
 
+    // Versão da linguagem Java usada no código
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
 }
 
+// Bibliotecas externas usadas pelo app (baixadas automaticamente pelo Gradle)
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'                 // AppCompatActivity, AlertDialog (compatibilidade com Androids antigos)
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'   // ConstraintLayout (layout das telas)
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'           // RecyclerView (lista de livros)
+    implementation 'androidx.cardview:cardview:1.0.0'                   // CardView (cartões com bordas arredondadas)
+    implementation 'com.google.android.material:material:1.12.0'        // Material Design: Toolbar, BottomNavigation, campos, botões
 }

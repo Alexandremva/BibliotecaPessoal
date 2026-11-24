@@ -1,3 +1,5 @@
+// BUILD DO PROJETO (raiz): define a versão do plugin do Android usada por todos os módulos.
+// "apply false" = só declara a versão aqui; quem aplica de fato é app/build.gradle.
 plugins {
     id 'com.android.application' version '8.5.2' apply false
 }

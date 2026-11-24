@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    PALETA DE CORES do app. Centralizar as cores aqui permite mudar o visual
+    do app inteiro alterando um único arquivo. Formato: #AARRGGBB (AA = opacidade).
+-->
 <resources>
+    <!-- Cores gerais (azul índigo como principal, laranja como destaque) -->
     <color name="primaria">#FF3F51B5</color>
     <color name="primaria_escura">#FF303F9F</color>
     <color name="secundaria">#FFFF9800</color>

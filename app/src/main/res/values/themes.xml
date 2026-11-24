@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    TEMA VISUAL aplicado a todas as telas (definido no AndroidManifest.xml).
+    Herda do Material Components claro SEM ActionBar, porque cada tela usa sua
+    própria MaterialToolbar no layout. Os itens abaixo dizem quais cores de
+    colors.xml usar como primária, secundária, fundo e barra de status.
+-->
 <resources>
     <style name="Theme.BibliotecaPessoal" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/primaria</item>

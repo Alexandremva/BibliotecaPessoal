@@ -1,3 +1,6 @@
+// CONFIGURAÇÕES DO PROJETO: de onde o Gradle baixa plugins e bibliotecas, e quais módulos existem.
+
+// Repositórios onde os PLUGINS do Gradle são procurados
 pluginManagement {
     repositories {
         google()
@@ -6,6 +9,7 @@ pluginManagement {
     }
 }
 
+// Repositórios onde as BIBLIOTECAS (dependencies) são procuradas
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -14,5 +18,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "BibliotecaPessoal"
-include ':app'
+rootProject.name = "BibliotecaPessoal" // Nome do projeto
+include ':app'                          // Único módulo do projeto: o aplicativo

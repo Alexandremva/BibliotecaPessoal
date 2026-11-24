@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    TEXTOS DO APP. Todos os textos exibidos ficam aqui, e não "fixos" no código.
+    Vantagens: fácil de corrigir/alterar e permite traduzir o app criando outro strings.xml.
+    %1$s = primeiro parâmetro do tipo texto; %1$d / %2$d = parâmetros numéricos
+    (preenchidos no código com getString(R.string.nome, valor)).
+-->
 <resources>
     <string name="app_name">Biblioteca Pessoal</string>
 

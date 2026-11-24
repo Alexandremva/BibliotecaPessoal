@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    LAYOUT DA TELA DE CADASTRO / EDIÇÃO (CadastroLivroActivity).
+
+    Estrutura:
+      1. Toolbar (o título muda para "Editar Livro" no modo edição)
+      2. Formulário rolável (ScrollView): Título, Autor, Ano, Nota, "Já li" e botão Salvar
+      3. Menu inferior
+
+    Os campos usam TextInputLayout (Material Design): o "hint" vira um rótulo
+    flutuante acima do campo quando o usuário começa a digitar.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
@@ -17,6 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- ScrollView: permite rolar o formulário quando o teclado ocupa parte da tela -->
     <ScrollView
         android:id="@+id/scrollFormulario"
         android:layout_width="0dp"
@@ -34,6 +46,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <!-- Campo Título: textCapSentences = primeira letra maiúscula automaticamente -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,6 +60,7 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Campo Autor: textCapWords = cada palavra começa com maiúscula (nome de pessoa) -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,6 +75,7 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Campo Ano: teclado numérico (inputType="number") e no máximo 4 dígitos -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,6 +91,7 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Campo Nota (opcional): teclado numérico, no máximo 2 dígitos (0 a 10) -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,6 +107,7 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Caixa de seleção "Já li este livro" (status lido / não lido) -->
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/cbLido"
                 android:layout_width="wrap_content"
@@ -99,6 +116,7 @@
                 android:text="@string/label_lido"
                 android:textColor="@color/texto_primario" />
 
+            <!-- Botão que chama salvar() no código; vira "Atualizar" no modo edição -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSalvar"
                 android:layout_width="match_parent"
@@ -108,6 +126,7 @@
         </LinearLayout>
     </ScrollView>
 
+    <!-- Menu inferior (o mesmo nas 3 telas) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="0dp"

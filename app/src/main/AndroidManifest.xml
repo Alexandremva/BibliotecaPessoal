@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    MANIFESTO DO APP: "carteira de identidade" do aplicativo para o Android.
+    Declara o nome, o tema visual e TODAS as telas (Activities) que existem no app.
+    Uma Activity que não estiver declarada aqui não pode ser aberta.
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--
+        allowBackup: permite backup automático dos dados do app (inclui o banco).
+        label: nome exibido embaixo do ícone (vem de strings.xml).
+        theme: tema de cores aplicado a todas as telas (themes.xml).
+    -->
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.BibliotecaPessoal">
 
+        <!--
+            Tela de lista de livros = TELA INICIAL.
+            O intent-filter MAIN + LAUNCHER faz ela abrir quando o usuário toca no ícone do app.
+            exported="true" é obrigatório para a tela que o launcher do Android abre.
+        -->
         <activity
             android:name=".view.ListaLivrosActivity"
             android:exported="true">
@@ -16,11 +31,16 @@
             </intent-filter>
         </activity>
 
+        <!--
+            Tela de cadastro/edição. exported="false": só o próprio app pode abri-la.
+            adjustResize: quando o teclado aparece, a tela encolhe para o formulário continuar visível.
+        -->
         <activity
             android:name=".view.CadastroLivroActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- Tela de resumo (totais de livros). Também só acessível de dentro do app. -->
         <activity
             android:name=".view.ResumoActivity"
             android:exported="false" />

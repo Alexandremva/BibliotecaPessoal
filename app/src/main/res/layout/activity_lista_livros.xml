@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    LAYOUT DA TELA "MEUS LIVROS" (ListaLivrosActivity).
+
+    Estrutura (de cima para baixo):
+      1. Toolbar (barra de título azul)
+      2. Área de conteúdo: dica de uso + lista rolável de livros (RecyclerView)
+         ou a mensagem de "lista vazia" quando não há livros
+      3. Menu inferior (BottomNavigationView)
+
+    ConstraintLayout posiciona cada elemento por "restrições" (constraints),
+    ex.: "o topo do conteúdo fica embaixo da toolbar".
+    O id "main" é usado no código para aplicar o espaçamento das barras do sistema.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
@@ -17,6 +30,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--
+        FrameLayout empilha os filhos um sobre o outro: a lista e a mensagem de
+        "lista vazia" ocupam o mesmo espaço; o código mostra/esconde a mensagem.
+        Altura 0dp + constraints = ocupa todo o espaço entre a toolbar e o menu inferior.
+    -->
     <FrameLayout
         android:id="@+id/conteudo"
         android:layout_width="0dp"
@@ -45,6 +63,7 @@
                 android:textColor="@color/texto_secundario"
                 android:textSize="12sp" />
 
+            <!-- Lista rolável de livros; cada item usa o layout item_livro.xml -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvLivros"
                 android:layout_width="match_parent"
@@ -56,6 +75,7 @@
                 android:paddingBottom="12dp" />
         </LinearLayout>
 
+        <!-- Mensagem exibida só quando não há livros (começa escondida: visibility="gone") -->
         <TextView
             android:id="@+id/tvListaVazia"
             android:layout_width="match_parent"
@@ -69,6 +89,7 @@
             android:visibility="gone" />
     </FrameLayout>
 
+    <!-- Menu inferior com 3 itens (definidos em menu/menu_navegacao.xml) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="0dp"

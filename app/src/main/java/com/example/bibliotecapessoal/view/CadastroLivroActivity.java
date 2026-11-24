@@ -22,14 +22,27 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Calendar;
 
+/**
+ * VIEW — Tela de Cadastro / Edição de livro.
+ *
+ * A MESMA tela serve para dois modos:
+ *  - CADASTRO: aberta pelo menu "Cadastrar" → formulário vazio, botão "Salvar";
+ *  - EDIÇÃO:   aberta ao tocar num livro da lista → recebe o livro pelo Intent,
+ *              preenche o formulário e o botão vira "Atualizar".
+ *
+ * Antes de gravar, valida os campos e mostra o erro embaixo do campo inválido.
+ */
 public class CadastroLivroActivity extends AppCompatActivity {
 
+    // "Chave" usada para enviar/receber o livro dentro do Intent
     public static final String EXTRA_LIVRO = "extra_livro";
 
-    private static final int ANO_MINIMO = 1450;
+    // Regras de validação
+    private static final int ANO_MINIMO = 1450;  // Ano aproximado da invenção da prensa de Gutenberg
     private static final int NOTA_MINIMA = 0;
     private static final int NOTA_MAXIMA = 10;
 
+    // Campos do formulário
     private EditText etTitulo;
     private EditText etAutor;
     private EditText etAno;
@@ -37,6 +50,7 @@ public class CadastroLivroActivity extends AppCompatActivity {
     private CheckBox cbLido;
 
     private ILivroDAO dao;
+    // Livro recebido da lista. Se for null, estamos CADASTRANDO; se não, EDITANDO.
     private Livro livroEmEdicao;
 
     @Override
@@ -45,6 +59,7 @@ public class CadastroLivroActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cadastro_livro);
 
+        // Espaçamento para o conteúdo não ficar embaixo da barra de status
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets barras = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(barras.left, barras.top, barras.right, 0);
@@ -53,6 +68,7 @@ public class CadastroLivroActivity extends AppCompatActivity {
 
         dao = new LivroDAO(this);
 
+        // Liga as variáveis Java aos componentes do layout XML (pelo id)
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         etTitulo = findViewById(R.id.etTitulo);
         etAutor = findViewById(R.id.etAutor);
@@ -61,8 +77,10 @@ public class CadastroLivroActivity extends AppCompatActivity {
         cbLido = findViewById(R.id.cbLido);
         Button btnSalvar = findViewById(R.id.btnSalvar);
 
+        // Verifica se a tela recebeu um livro (modo EDIÇÃO)
         livroEmEdicao = (Livro) getIntent().getSerializableExtra(EXTRA_LIVRO);
         if (livroEmEdicao != null) {
+            // Preenche o formulário com os dados atuais do livro
             etTitulo.setText(livroEmEdicao.getTitulo());
             etAutor.setText(livroEmEdicao.getAutor());
             etAno.setText(String.valueOf(livroEmEdicao.getAno()));
@@ -70,17 +88,27 @@ public class CadastroLivroActivity extends AppCompatActivity {
                 etNota.setText(String.valueOf(livroEmEdicao.getNota()));
             }
             cbLido.setChecked(livroEmEdicao.isLido());
+            // Ajusta textos para o modo edição
             btnSalvar.setText(R.string.btn_atualizar);
             toolbar.setTitle(R.string.titulo_edicao);
         }
 
+        // Ao tocar no botão, chama o método salvar()
         btnSalvar.setOnClickListener(v -> salvar());
 
+        // Menu inferior com o item "Cadastrar" destacado
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         NavegacaoMenu.configurar(this, bottomNav, R.id.nav_cadastro);
     }
 
+    /**
+     * Lê os campos, VALIDA e grava no banco (insere ou atualiza).
+     *
+     * A variável "valido" começa true e vira false a cada erro encontrado. Todos os
+     * campos são verificados (e não só o primeiro), para o usuário ver todos os erros de uma vez.
+     */
     private void salvar() {
+        // Lê o texto digitado; trim() remove espaços no início e no fim
         String titulo = etTitulo.getText().toString().trim();
         String autor = etAutor.getText().toString().trim();
         String anoTexto = etAno.getText().toString().trim();
@@ -88,16 +116,19 @@ public class CadastroLivroActivity extends AppCompatActivity {
 
         boolean valido = true;
 
+        // Título: obrigatório
         if (titulo.isEmpty()) {
             etTitulo.setError(getString(R.string.erro_titulo_obrigatorio));
             valido = false;
         }
 
+        // Autor: obrigatório
         if (autor.isEmpty()) {
             etAutor.setError(getString(R.string.erro_autor_obrigatorio));
             valido = false;
         }
 
+        // Ano: obrigatório, numérico e entre 1450 e o ano atual
         int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
         int ano = 0;
         if (anoTexto.isEmpty()) {
@@ -111,11 +142,13 @@ public class CadastroLivroActivity extends AppCompatActivity {
                     valido = false;
                 }
             } catch (NumberFormatException e) {
+                // Texto não é um número válido
                 etAno.setError(getString(R.string.erro_ano_intervalo, ANO_MINIMO, anoAtual));
                 valido = false;
             }
         }
 
+        // Nota: OPCIONAL; se preenchida, deve estar entre 0 e 10. Vazia = null (sem nota)
         Integer nota = null;
         if (!notaTexto.isEmpty()) {
             try {
@@ -132,6 +165,7 @@ public class CadastroLivroActivity extends AppCompatActivity {
             }
         }
 
+        // Se houve qualquer erro, para aqui e NÃO grava nada
         if (!valido) {
             return;
         }
@@ -139,6 +173,7 @@ public class CadastroLivroActivity extends AppCompatActivity {
         boolean lido = cbLido.isChecked();
 
         if (livroEmEdicao != null) {
+            // ---- MODO EDIÇÃO: altera o livro recebido e faz UPDATE no banco ----
             livroEmEdicao.setTitulo(titulo);
             livroEmEdicao.setAutor(autor);
             livroEmEdicao.setAno(ano);
@@ -147,16 +182,17 @@ public class CadastroLivroActivity extends AppCompatActivity {
 
             if (dao.atualizar(livroEmEdicao)) {
                 Toast.makeText(this, R.string.msg_atualizado_sucesso, Toast.LENGTH_SHORT).show();
-                NavegacaoMenu.irPara(this, ListaLivrosActivity.class);
+                NavegacaoMenu.irPara(this, ListaLivrosActivity.class); // volta para a lista
             } else {
                 Toast.makeText(this, R.string.msg_erro_atualizar, Toast.LENGTH_SHORT).show();
             }
         } else {
+            // ---- MODO CADASTRO: cria um livro novo (id 0, o banco gera o real) e faz INSERT ----
             Livro novoLivro = new Livro(0, titulo, autor, ano, lido, nota);
 
             if (dao.salvar(novoLivro)) {
                 Toast.makeText(this, R.string.msg_salvo_sucesso, Toast.LENGTH_SHORT).show();
-                NavegacaoMenu.irPara(this, ListaLivrosActivity.class);
+                NavegacaoMenu.irPara(this, ListaLivrosActivity.class); // volta para a lista
             } else {
                 Toast.makeText(this, R.string.msg_erro_salvar, Toast.LENGTH_SHORT).show();
             }
