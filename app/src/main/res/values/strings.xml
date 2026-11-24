@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Biblioteca Pessoal</string>
+
+    <!-- Títulos das telas -->
+    <string name="titulo_lista">Meus Livros</string>
+    <string name="titulo_cadastro">Cadastrar Livro</string>
+    <string name="titulo_edicao">Editar Livro</string>
+    <string name="titulo_resumo">Resumo da Biblioteca</string>
+
+    <!-- Menu de navegação -->
+    <string name="menu_lista">Livros</string>
+    <string name="menu_cadastro">Cadastrar</string>
+    <string name="menu_resumo">Resumo</string>
+
+    <!-- Hints do formulário -->
+    <string name="hint_titulo">Título</string>
+    <string name="hint_autor">Autor</string>
+    <string name="hint_ano">Ano de publicação</string>
+    <string name="hint_nota">Nota (0 a 10, opcional)</string>
+    <string name="label_lido">Já li este livro</string>
+
+    <!-- Botões -->
+    <string name="btn_salvar">Salvar</string>
+    <string name="btn_atualizar">Atualizar</string>
+
+    <!-- Erros de validação -->
+    <string name="erro_titulo_obrigatorio">Informe o título do livro</string>
+    <string name="erro_autor_obrigatorio">Informe o autor do livro</string>
+    <string name="erro_ano_obrigatorio">Informe o ano de publicação</string>
+    <string name="erro_ano_intervalo">Informe um ano entre %1$d e %2$d</string>
+    <string name="erro_nota_intervalo">Informe uma nota entre %1$d e %2$d</string>
+
+    <!-- Toasts -->
+    <string name="msg_salvo_sucesso">Livro salvo com sucesso</string>
+    <string name="msg_atualizado_sucesso">Livro atualizado com sucesso</string>
+    <string name="msg_excluido_sucesso">Livro excluído com sucesso</string>
+    <string name="msg_erro_salvar">Erro ao salvar o livro</string>
+    <string name="msg_erro_atualizar">Erro ao atualizar o livro</string>
+    <string name="msg_erro_excluir">Erro ao excluir o livro</string>
+
+    <!-- Diálogo de exclusão -->
+    <string name="dialogo_excluir_titulo">Excluir livro</string>
+    <string name="dialogo_excluir_mensagem">Deseja realmente excluir \"%1$s\"?</string>
+    <string name="dialogo_btn_sim">Excluir</string>
+    <string name="dialogo_btn_nao">Cancelar</string>
+
+    <!-- Lista -->
+    <string name="lista_vazia">Nenhum livro cadastrado ainda.\nToque em \"Cadastrar\" para adicionar o primeiro.</string>
+    <string name="lista_dica">Toque para editar • Pressione e segure para excluir</string>
+    <string name="formato_autor">Autor: %1$s</string>
+    <string name="formato_ano">Ano: %1$d</string>
+    <string name="formato_nota">Nota: %1$d/10</string>
+    <string name="sem_nota">Sem nota</string>
+    <string name="status_lido">Lido</string>
+    <string name="status_nao_lido">Não lido</string>
+
+    <!-- Resumo -->
+    <string name="resumo_total">Total de livros</string>
+    <string name="resumo_lidos">Livros lidos</string>
+    <string name="resumo_nao_lidos">Livros não lidos</string>
+</resources>

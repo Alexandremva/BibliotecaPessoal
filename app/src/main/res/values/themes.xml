@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.BibliotecaPessoal" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaria</item>
+        <item name="colorPrimaryVariant">@color/primaria_escura</item>
+        <item name="colorOnPrimary">@color/branco</item>
+        <item name="colorSecondary">@color/secundaria</item>
+        <item name="colorOnSecondary">@color/branco</item>
+        <item name="android:colorBackground">@color/fundo</item>
+        <item name="android:statusBarColor">@color/primaria_escura</item>
+    </style>
+</resources>

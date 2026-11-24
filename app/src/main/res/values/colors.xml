@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaria">#FF3F51B5</color>
+    <color name="primaria_escura">#FF303F9F</color>
+    <color name="secundaria">#FFFF9800</color>
+    <color name="branco">#FFFFFFFF</color>
+    <color name="fundo">#FFF5F5F7</color>
+    <color name="superficie">#FFFFFFFF</color>
+    <color name="texto_primario">#FF212121</color>
+    <color name="texto_secundario">#FF757575</color>
+
+    <!-- Status de leitura -->
+    <color name="status_lido">#FF2E7D32</color>
+    <color name="status_nao_lido">#FFC62828</color>
+
+    <!-- Resumo -->
+    <color name="resumo_total">#FF3F51B5</color>
+
+    <!-- Ícones -->
+    <color name="icone">#FF000000</color>
+</resources>
